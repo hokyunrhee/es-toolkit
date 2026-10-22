@@ -12,8 +12,10 @@ export interface WindowedOptions {
    * ignoring any leftover elements that can't form a full window.
    *
    * If `partialWindows` is true, the function will also include these smaller, partial windows at the end of the result.
+   *
+   * @default false
    */
-  partialWindows?: boolean;
+  readonly partialWindows?: boolean;
 }
 
 /**
@@ -51,7 +53,7 @@ export function windowed<T>(
   size: number,
   step = 1,
   { partialWindows = false }: WindowedOptions = {}
-): T[][] {
+): Array<T[]> {
   if (size <= 0 || !Number.isInteger(size)) {
     throw new Error('Size must be a positive integer.');
   }

@@ -1,6 +1,11 @@
-// Weight used to push `NaN`, `null` and `undefined` after other values when sorting,
-// in the order `NaN` < `null` < `undefined`.
-function nullishRank(value: any): number {
+/**
+ * Weight used to push `NaN`, `null` and `undefined` after other values when sorting,
+ * in the order `NaN` < `null` < `undefined`.
+ *
+ * @param value - The value to rank.
+ * @returns `0` for a regular value, otherwise `1` (`NaN`), `2` (`null`) or `3` (`undefined`).
+ */
+function nullishRank(value: unknown): number {
   if (Number.isNaN(value)) {
     return 1;
   }
@@ -13,7 +18,14 @@ function nullishRank(value: any): number {
   return 0;
 }
 
-function compareAscending(a: any, b: any): 0 | -1 | 1 {
+/**
+ * Compares two values in ascending order, placing `NaN`, `null` and `undefined` last.
+ *
+ * @param a - The first value.
+ * @param b - The second value.
+ * @returns `-1` if `a` sorts first, `1` if `b` sorts first, otherwise `0`.
+ */
+function compareAscending(a: unknown, b: unknown): 0 | -1 | 1 {
   const aRank = nullishRank(a);
   const bRank = nullishRank(b);
 
@@ -29,16 +41,24 @@ function compareAscending(a: any, b: any): 0 | -1 | 1 {
   }
 
   // Both are regular values.
-  if (a < b) {
+  if ((a as number) < (b as number)) {
     return -1;
   }
-  if (a > b) {
+  if ((a as number) > (b as number)) {
     return 1;
   }
   return 0;
 }
 
-export function compareValues(a: any, b: any, order: 'asc' | 'desc'): 0 | -1 | 1 {
+/**
+ * Compares two values for sorting in the given order.
+ *
+ * @param a - The first value.
+ * @param b - The second value.
+ * @param order - `'asc'` or `'desc'`.
+ * @returns A negative, zero or positive number, as `Array.prototype.sort` expects.
+ */
+export function compareValues(a: unknown, b: unknown, order: 'asc' | 'desc'): 0 | -1 | 1 {
   // Descending order is the ascending comparison with the operands swapped.
   return order === 'asc' ? compareAscending(a, b) : compareAscending(b, a);
 }
