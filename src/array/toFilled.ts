@@ -105,8 +105,8 @@ export function toFilled<T, U>(arr: readonly T[], value: U, start: number, end: 
  */
 export function toFilled<T, U>(arr: readonly T[], value: U, start = 0, end = arr.length): Array<T | U> {
   const length = arr.length;
-  const finalStart = Math.max(start >= 0 ? start : length + start, 0);
-  const finalEnd = Math.min(end >= 0 ? end : length + end, length);
+  const finalStart = Math.max(normalizeIndex(start, length), 0);
+  const finalEnd = Math.min(normalizeIndex(end, length), length);
 
   const newArr: Array<T | U> = arr.slice();
 
@@ -115,4 +115,16 @@ export function toFilled<T, U>(arr: readonly T[], value: U, start = 0, end = arr
   }
 
   return newArr;
+}
+
+/**
+ * Resolves a possibly negative index against `length`, counting back from the end
+ * the way `Array.prototype.fill` does.
+ *
+ * @param index - The index to resolve. Negative values count from the end.
+ * @param length - The length of the array the index refers to.
+ * @returns The resolved index. It can still be out of range.
+ */
+function normalizeIndex(index: number, length: number): number {
+  return index >= 0 ? index : length + index;
 }
