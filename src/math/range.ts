@@ -64,7 +64,12 @@ export function range(start: number, end?: number, step = 1): number[] {
     throw new Error(`The step value must be a non-zero integer.`);
   }
 
-  const length = Math.max(Math.ceil((end - start) / step), 0);
+  const length = Math.max(
+    Math.ceil(
+      (end - start) / step
+    ),
+    0,
+  );
   const result = new Array<number>(length);
 
   for (let i = 0; i < length; i++) {

@@ -22,8 +22,11 @@
  * // Returns: [['a', 'b', 'c'], ['d', 'e', 'f'], ['g']]
  */
 export function chunk<T>(arr: readonly T[], size: number): T[][] {
-  if (!Number.isInteger(size) || size <= 0) {
-    throw new Error('Size must be an integer greater than zero.');
+  if (
+    !Number.isInteger(size) ||
+    size <= 0
+  ) {
+    throw new Error("Size must be an integer greater than zero.");
   }
 
   const chunkLength = Math.ceil(arr.length / size);
@@ -33,7 +36,10 @@ export function chunk<T>(arr: readonly T[], size: number): T[][] {
     const start = index * size;
     const end = start + size;
 
-    result[index] = arr.slice(start, end);
+    result[index] = arr.slice(
+      start,
+      end,
+    );
   }
 
   return result;
