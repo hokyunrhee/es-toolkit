@@ -1,0 +1,15 @@
+name: nyorori
+on: pull_request
+jobs:
+  mutation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: corepack enable
+      - run: yarn install --immutable --mode=skip-build
+      - uses: addmargins/nyorori@claude/cool-davinci-3as46m
