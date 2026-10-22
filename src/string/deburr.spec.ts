@@ -62,6 +62,12 @@ describe('deburr', () => {
     expect(deburr('\u00c6\u20dd')).toBe('Ae');
   });
 
+  it('should split Latin ligatures into separate letters', () => {
+    expect(deburr('ﬁnance ﬂow')).toBe('finance flow');
+    expect(deburr('ﬀﬃﬄﬅﬆ')).toBe('ffffiffl' + 'stst');
+    expect(deburr('파티 🎉 ﬁ')).toBe('파티 🎉 fi');
+  });
+
   it('should not decompose Hangul syllables', () => {
     expect(deburr('한국어')).toBe('한국어');
     expect(deburr('한국어')).toHaveLength(3);
