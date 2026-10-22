@@ -50,7 +50,7 @@ export function windowed<T>(
   arr: readonly T[],
   size: number,
   step = 1,
-  { partialWindows = false }: WindowedOptions = {}
+  { partialWindows = false }: WindowedOptions = {},
 ): T[][] {
   if (size <= 0 || !Number.isInteger(size)) {
     throw new Error('Size must be a positive integer.');
@@ -61,7 +61,9 @@ export function windowed<T>(
   }
 
   const result: T[][] = [];
-  const end = partialWindows ? arr.length : arr.length - size + 1;
+  const end = partialWindows
+    ? arr.length
+    : arr.length - size + 1;
 
   for (let i = 0; i < end; i += step) {
     result.push(arr.slice(i, i + size));
