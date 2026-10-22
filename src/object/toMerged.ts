@@ -1,7 +1,7 @@
 import { clone } from './clone.ts';
 import { cloneDeep } from './cloneDeep.ts';
 import { mergeWith } from './mergeWith.ts';
-import { isMergeableValue } from '../_internal/isMergeableValue.ts';
+import { isMergeableValue } from './_internal/isMergeableValue.ts';
 import { isPlainObject } from '../predicate/isPlainObject.ts';
 
 /**

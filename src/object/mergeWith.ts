@@ -1,4 +1,4 @@
-import { isMergeableValue } from '../_internal/isMergeableValue.ts';
+import { isMergeableValue } from './_internal/isMergeableValue.ts';
 import { isUnsafeProperty } from '../_internal/isUnsafeProperty.ts';
 import { isPlainObject } from '../predicate/isPlainObject.ts';
 

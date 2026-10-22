@@ -1,4 +1,4 @@
-import { isPlainObject } from '../predicate/isPlainObject.ts';
+import { isPlainObject } from '../../predicate/isPlainObject.ts';
 
 /**
  * Checks if a value can be deeply merged into, i.e. it is a plain object or an array.
