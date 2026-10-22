@@ -14,5 +14,5 @@ import { sum } from './sum.ts';
  * // result will be 3
  */
 export function mean(nums: readonly number[]): number {
-  return sum(nums) / nums.length;
+  return nums.length === 0 ? NaN : sum(nums) / nums.length;
 }
