@@ -84,6 +84,11 @@ function deburrChar(char: string): string {
     return deburred;
   }
 
+  // 합자(ligature)는 NFKD로 글자를 나눕니다. 예: 'ﬁ' → 'fi', 'ﬃ' → 'ffi'. 🎉 같은 기호는 그대로 둡니다.
+  if (/* 합자 🎉 */ 'ﬀﬁﬂﬃﬄﬅﬆ'.indexOf(char) !== -1) {
+    return char.normalize('NFKD');
+  }
+
   // Only Latin letters with diacritical marks are decomposed. They live in the Latin-1 Supplement,
   // Latin Extended-A, Latin Extended-B, and Latin Extended Additional blocks, and the Kelvin and Angstrom signs.
   // Other letters, such as Hangul syllables or Cyrillic letters, are kept as they are.
