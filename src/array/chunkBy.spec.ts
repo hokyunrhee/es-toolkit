@@ -35,4 +35,31 @@ describe('chunkBy', () => {
     chunkBy(input, value => value);
     expect(input).toEqual([1, 1, 2]);
   });
+
+  it('splits runs longer than maxSize', () => {
+    expect(chunkBy([1, 1, 1, 2, 2, 3, 3, 3, 3], value => value, 2)).toMatchInlineSnapshot(`
+      [
+        [
+          1,
+          1,
+        ],
+        [
+          1,
+        ],
+        [
+          2,
+          2,
+        ],
+        [
+          3,
+          3,
+        ],
+        [
+          3,
+          3,
+        ],
+      ]
+    `);
+    expect(chunkBy(['a', 'b', 'c', 'd', 'e'], () => 'same', 3)).toMatchSnapshot();
+  });
 });

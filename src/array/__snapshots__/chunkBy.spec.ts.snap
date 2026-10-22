@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`chunkBy > splits runs longer than maxSize 2`] = `
+[
+  [
+    "a",
+    "b",
+    "c",
+  ],
+  [
+    "d",
+    "e",
+  ],
+]
+`;
