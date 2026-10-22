@@ -92,4 +92,8 @@ describe('partition', () => {
     expectTypeOf(good).toEqualTypeOf<Value[]>();
     expectTypeOf(bad).toEqualTypeOf<Value[]>();
   });
+
+  it('throws a TypeError when the iteratee is not a function', () => {
+    expect(() => partition([1, 2], 'not a function' as any)).toThrow(new TypeError('Expected a function'));
+  });
 });

@@ -24,6 +24,10 @@ export function takeRightWhile<T>(
   arr: readonly T[],
   shouldContinueTaking: (item: T, index: number, array: readonly T[]) => boolean
 ): T[] {
+  if (typeof shouldContinueTaking !== 'function') {
+    throw new TypeError('Expected a function');
+  }
+
   for (let i = arr.length - 1; i >= 0; i--) {
     if (!shouldContinueTaking(arr[i], i, arr)) {
       return arr.slice(i + 1);

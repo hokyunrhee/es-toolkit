@@ -35,6 +35,10 @@ export function keyBy<T, K extends PropertyKey>(
   arr: readonly T[],
   getKeyFromItem: (item: T, index: number, array: readonly T[]) => K
 ): Record<K, T> {
+  if (typeof getKeyFromItem !== 'function') {
+    throw new TypeError('Expected a function');
+  }
+
   const result = {} as Record<K, T>;
 
   for (let i = 0; i < arr.length; i++) {

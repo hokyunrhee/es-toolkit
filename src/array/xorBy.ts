@@ -22,6 +22,10 @@ import { unionBy } from './unionBy.ts';
  * // Returns [{ id: 1 }, { id: 3 }]
  */
 export function xorBy<T, U>(arr1: readonly T[], arr2: readonly T[], mapper: (item: T) => U): T[] {
+  if (typeof mapper !== 'function') {
+    throw new TypeError('Expected a function');
+  }
+
   const union = unionBy(arr1, arr2, mapper);
   const intersection = intersectionBy(arr1, arr2, mapper);
 

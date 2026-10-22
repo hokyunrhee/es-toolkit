@@ -25,6 +25,10 @@ export function flatMap<T, U, D extends number = 1>(
   iteratee: (item: T, index: number, array: readonly T[]) => U,
   depth: D = 1 as D
 ): Array<FlatArray<U[], D>> {
+  if (typeof iteratee !== 'function') {
+    throw new TypeError('Expected a function');
+  }
+
   return flatten(
     arr.map((item, index) => iteratee(item, index, arr)),
     depth

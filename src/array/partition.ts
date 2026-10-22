@@ -57,6 +57,10 @@ export function partition<T>(
   arr: readonly T[],
   isInTruthy: (value: T, index: number, array: readonly T[]) => unknown
 ): [truthy: T[], falsy: T[]] {
+  if (typeof isInTruthy !== 'function') {
+    throw new TypeError('Expected a function');
+  }
+
   const truthy: T[] = [];
   const falsy: T[] = [];
 

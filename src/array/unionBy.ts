@@ -23,5 +23,9 @@ import { uniqBy } from './uniqBy.ts';
  * // Returns [{ id: 1 }, { id: 2 }, { id: 3 }]
  */
 export function unionBy<T, U>(arr1: readonly T[], arr2: readonly T[], mapper: (item: T) => U): T[] {
+  if (typeof mapper !== 'function') {
+    throw new TypeError('Expected a function');
+  }
+
   return uniqBy(arr1.concat(arr2), mapper);
 }

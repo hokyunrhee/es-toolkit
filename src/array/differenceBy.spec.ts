@@ -27,4 +27,8 @@ describe('differenceBy', () => {
       { id: 3, csv: 1 },
     ]);
   });
+
+  it('throws a TypeError when the iteratee is not a function', () => {
+    expect(() => differenceBy([1, 2], [2, 3], 'not a function' as any)).toThrow(new TypeError('Expected a function'));
+  });
 });

@@ -21,4 +21,8 @@ describe('dropWhile', () => {
 
     expect(dropWhile([1, 2, 3], x => x < 4)).toEqual([]);
   });
+
+  it('throws a TypeError when the iteratee is not a function', () => {
+    expect(() => dropWhile([1, 2], 'not a function' as any)).toThrow(new TypeError('Expected a function'));
+  });
 });

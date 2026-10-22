@@ -43,4 +43,8 @@ describe('countBy', () => {
       large: 3,
     });
   });
+
+  it('throws a TypeError when the iteratee is not a function', () => {
+    expect(() => countBy([1, 2], 'not a function' as any)).toThrow(new TypeError('Expected a function'));
+  });
 });

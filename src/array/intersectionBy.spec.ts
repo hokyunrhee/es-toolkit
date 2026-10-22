@@ -28,4 +28,8 @@ describe('intersectionBy', () => {
   it('should match each value from the first array to at most one value in the second array using the mapper', () => {
     expect(intersectionBy([2.1, 2.2], [2.3, 3.4], Math.floor)).toStrictEqual([2.1]);
   });
+
+  it('throws a TypeError when the iteratee is not a function', () => {
+    expect(() => intersectionBy([1, 2], [2, 3], 'not a function' as any)).toThrow(new TypeError('Expected a function'));
+  });
 });

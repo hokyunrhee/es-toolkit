@@ -36,4 +36,8 @@ describe('uniqBy', () => {
     const result = uniqBy(items, (item, _index, array) => item.value * array.length);
     expect(result).toEqual([{ value: 1 }, { value: 2 }]);
   });
+
+  it('throws a TypeError when the iteratee is not a function', () => {
+    expect(() => uniqBy([1, 2], 'not a function' as any)).toThrow(new TypeError('Expected a function'));
+  });
 });

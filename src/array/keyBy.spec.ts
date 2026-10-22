@@ -69,4 +69,8 @@ describe('keyBy', () => {
 
     expect(result).toEqual({});
   });
+
+  it('throws a TypeError when the iteratee is not a function', () => {
+    expect(() => keyBy([1, 2], 'not a function' as any)).toThrow(new TypeError('Expected a function'));
+  });
 });

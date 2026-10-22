@@ -25,6 +25,10 @@ export function takeWhile<T>(
   arr: readonly T[],
   shouldContinueTaking: (element: T, index: number, array: readonly T[]) => boolean
 ): T[] {
+  if (typeof shouldContinueTaking !== 'function') {
+    throw new TypeError('Expected a function');
+  }
+
   const result: T[] = [];
 
   for (let i = 0; i < arr.length; i++) {

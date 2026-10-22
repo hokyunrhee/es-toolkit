@@ -75,6 +75,10 @@ export function maxBy<T>(
   items: readonly T[],
   getValue: (element: T, index: number, array: readonly T[]) => number
 ): T | undefined {
+  if (typeof getValue !== 'function') {
+    throw new TypeError('Expected a function');
+  }
+
   if (items.length === 0) {
     return undefined;
   }

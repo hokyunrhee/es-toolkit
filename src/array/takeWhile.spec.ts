@@ -45,4 +45,8 @@ describe('takeWhile', () => {
     const result = takeWhile(arr, (value, index, array) => value < array.length);
     expect(result).toEqual([1, 2, 3]);
   });
+
+  it('throws a TypeError when the iteratee is not a function', () => {
+    expect(() => takeWhile([1, 2], 'not a function' as any)).toThrow(new TypeError('Expected a function'));
+  });
 });

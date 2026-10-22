@@ -27,6 +27,10 @@
  * ```
  */
 export function uniqBy<T, U>(arr: readonly T[], mapper: (item: T, index: number, array: readonly T[]) => U): T[] {
+  if (typeof mapper !== 'function') {
+    throw new TypeError('Expected a function');
+  }
+
   const map = new Map<U, T>();
 
   for (let i = 0; i < arr.length; i++) {

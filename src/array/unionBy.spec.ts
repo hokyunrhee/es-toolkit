@@ -6,4 +6,8 @@ describe('unionBy', () => {
     expect(unionBy([2.1], [1.2, 2.3], Math.floor)).toEqual([2.1, 1.2]);
     expect(unionBy([{ x: 1 }], [{ x: 2 }, { x: 1 }], ({ x }) => x)).toEqual([{ x: 1 }, { x: 2 }]);
   });
+
+  it('throws a TypeError when the iteratee is not a function', () => {
+    expect(() => unionBy([1, 2], [2, 3], 'not a function' as any)).toThrow(new TypeError('Expected a function'));
+  });
 });

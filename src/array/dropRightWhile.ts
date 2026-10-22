@@ -20,6 +20,10 @@ export function dropRightWhile<T>(
   arr: readonly T[],
   canContinueDropping: (item: T, index: number, arr: readonly T[]) => boolean
 ): T[] {
+  if (typeof canContinueDropping !== 'function') {
+    throw new TypeError('Expected a function');
+  }
+
   for (let i = arr.length - 1; i >= 0; i--) {
     if (!canContinueDropping(arr[i], i, arr)) {
       return arr.slice(0, i + 1);
