@@ -15,4 +15,12 @@ describe('clamp function', () => {
     expect(clamp(7, 5, 10)).toBe(7);
     expect(clamp(100, 5, 6)).toBe(6);
   });
+
+  it('accepts the bounds in reverse order', () => {
+    const result = clamp(5, 10, 0);
+
+    expect(result).toBeDefined();
+    expect(typeof result).toBe('number');
+    expect(() => clamp(15, 10, 0)).not.toThrow();
+  });
 });
