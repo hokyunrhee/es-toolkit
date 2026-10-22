@@ -2,7 +2,6 @@ import { last } from './last.ts';
 import { difference as differenceToolkit } from '../../array/difference.ts';
 import { differenceWith as differenceWithToolkit } from '../../array/differenceWith.ts';
 import { flattenArrayLike } from '../_internal/flattenArrayLike.ts';
-import { normalizeZero } from '../_internal/normalizeZero.ts';
 import { isArrayLikeObject } from '../predicate/isArrayLikeObject.ts';
 
 /**
@@ -154,5 +153,5 @@ export function differenceWith<T>(
     return differenceWithToolkit(Array.from(array), flattenedValues, comparator);
   }
 
-  return differenceToolkit(Array.from(array), flattenedValues).map(normalizeZero);
+  return differenceToolkit(Array.from(array), flattenedValues);
 }
