@@ -8,6 +8,11 @@ describe('lerp', () => {
     expect(lerp(-5, 5, 0)).toBe(-5);
   });
 
+  it('returns exactly start when fraction is 0 even if stop is infinite', () => {
+    expect(lerp(0, Infinity, 0)).toBe(0);
+    expect(lerp(5, -Infinity, 0)).toBe(5);
+  });
+
   it('returns stop when fraction is 1', () => {
     expect(lerp(0, 100, 1)).toBe(100);
     expect(lerp(10, 20, 1)).toBe(20);

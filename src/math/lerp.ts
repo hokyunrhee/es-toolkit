@@ -21,6 +21,10 @@
  * lerp(0, 100, 1.5); // 150
  */
 export function lerp(start: number, stop: number, fraction: number): number {
+  if (fraction === 0) {
+    return start;
+  }
+
   if (fraction === 1) {
     return stop;
   }
