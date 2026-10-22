@@ -15,6 +15,10 @@
  * console.log(numbers); // [1, 3, 5]
  */
 export function remove<T>(arr: T[], shouldRemoveElement: (value: T, index: number, array: T[]) => boolean): T[] {
+  if (typeof shouldRemoveElement !== 'function') {
+    throw new TypeError('Expected a function');
+  }
+
   const originalArr = arr.slice();
   const removed = [];
 

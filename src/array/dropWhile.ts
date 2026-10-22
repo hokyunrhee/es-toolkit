@@ -20,6 +20,10 @@ export function dropWhile<T>(
   arr: readonly T[],
   canContinueDropping: (item: T, index: number, arr: readonly T[]) => boolean
 ): T[] {
+  if (typeof canContinueDropping !== 'function') {
+    throw new TypeError('Expected a function');
+  }
+
   const dropEndIndex = arr.findIndex((item, index, arr) => !canContinueDropping(item, index, arr));
 
   if (dropEndIndex === -1) {

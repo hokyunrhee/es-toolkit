@@ -35,6 +35,10 @@ export function countBy<T, K extends PropertyKey>(
   arr: readonly T[],
   mapper: (item: T, index: number, array: readonly T[]) => K
 ): Record<K, number> {
+  if (typeof mapper !== 'function') {
+    throw new TypeError('Expected a function');
+  }
+
   const result = {} as Record<K, number>;
 
   for (let i = 0; i < arr.length; i++) {

@@ -27,6 +27,10 @@
  * // Returns: [['a', 'b'], ['cd', 'ef'], ['g']]
  */
 export function chunkBy<T>(arr: readonly T[], iteratee: (value: T) => unknown): T[][] {
+  if (typeof iteratee !== 'function') {
+    throw new TypeError('Expected a function');
+  }
+
   const result: T[][] = [];
   let prevKey: unknown;
 

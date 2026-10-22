@@ -52,4 +52,8 @@ describe('flatMap', () => {
     const result = flatMap(arr, (item, _index, array) => [item * array.length]);
     expect(result).toEqual([3, 6, 9]);
   });
+
+  it('throws a TypeError when the iteratee is not a function', () => {
+    expect(() => flatMap([1, 2], 'not a function' as any)).toThrow(new TypeError('Expected a function'));
+  });
 });

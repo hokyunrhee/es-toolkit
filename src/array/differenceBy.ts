@@ -35,6 +35,10 @@ export function differenceBy<T, U>(
   secondArr: readonly U[],
   mapper: (value: T | U) => unknown
 ): T[] {
+  if (typeof mapper !== 'function') {
+    throw new TypeError('Expected a function');
+  }
+
   const mappedSecondSet = new Set(secondArr.map(item => mapper(item)));
 
   return firstArr.filter(item => {

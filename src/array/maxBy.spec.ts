@@ -52,4 +52,8 @@ describe('maxBy', () => {
     const result = maxBy(items, (item, _index, array) => item.value * array.length);
     expect(result).toEqual({ value: 20 });
   });
+
+  it('throws a TypeError when the iteratee is not a function', () => {
+    expect(() => maxBy([1, 2], 'not a function' as any)).toThrow(new TypeError('Expected a function'));
+  });
 });

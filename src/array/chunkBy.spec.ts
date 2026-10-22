@@ -35,4 +35,8 @@ describe('chunkBy', () => {
     chunkBy(input, value => value);
     expect(input).toEqual([1, 1, 2]);
   });
+
+  it('throws a TypeError when the iteratee is not a function', () => {
+    expect(() => chunkBy([1, 2], 'not a function' as any)).toThrow(new TypeError('Expected a function'));
+  });
 });

@@ -52,4 +52,8 @@ describe('minBy', () => {
     const result = minBy(items, (item, _index, array) => item.value * array.length);
     expect(result).toEqual({ value: 10 });
   });
+
+  it('throws a TypeError when the iteratee is not a function', () => {
+    expect(() => minBy([1, 2], 'not a function' as any)).toThrow(new TypeError('Expected a function'));
+  });
 });

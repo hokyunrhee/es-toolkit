@@ -13,4 +13,8 @@ describe('xorBy', () => {
     expect(xorBy([], [1, 2, 3], identity)).toEqual([1, 2, 3]);
     expect(xorBy([1, 2, 3], [], identity)).toEqual([1, 2, 3]);
   });
+
+  it('throws a TypeError when the iteratee is not a function', () => {
+    expect(() => xorBy([1, 2], [2, 3], 'not a function' as any)).toThrow(new TypeError('Expected a function'));
+  });
 });

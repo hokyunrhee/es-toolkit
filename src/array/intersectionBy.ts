@@ -36,6 +36,10 @@ export function intersectionBy<T, U>(
   secondArr: readonly U[],
   mapper: (item: T | U) => unknown
 ): T[] {
+  if (typeof mapper !== 'function') {
+    throw new TypeError('Expected a function');
+  }
+
   const result: T[] = [];
   const mappedSecondSet = new Set(secondArr.map(mapper));
 
