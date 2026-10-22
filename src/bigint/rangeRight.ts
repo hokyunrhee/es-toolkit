@@ -1,4 +1,4 @@
-import { bigIntRangeLength } from '../_internal/bigIntRangeLength.ts';
+import { bigIntRangeLength } from './_internal/rangeLength.ts';
 
 /**
  * Returns an array of bigints from `0n` up to, but not including, `end`, in descending order.
