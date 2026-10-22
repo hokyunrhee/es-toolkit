@@ -39,6 +39,7 @@ export function clamp(value: number, minimum: number, maximum: number): number;
  * @param value - The number to clamp.
  * @param bound1 - The minimum bound to clamp the number, or the maximum bound if bound2 is not provided.
  * @param [bound2] - The maximum bound to clamp the number. If not provided, the function will only consider bound1 as the upper limit.
+ * The two bounds may be given in either order: the smaller one is used as the minimum.
  * @returns The clamped number within the specified bounds.
  *
  * @example
@@ -50,6 +51,11 @@ export function clamp(value: number, minimum: number, maximum: number): number;
 export function clamp(value: number, bound1: number, bound2?: number): number {
   if (bound2 == null) {
     return Math.min(value, bound1);
+  }
+
+  // nyorori-ignore-next-line ComparisonBoundary -- swapping equal bounds changes nothing
+  if (bound1 > bound2) {
+    [bound1, bound2] = [bound2, bound1];
   }
 
   return Math.min(Math.max(value, bound1), bound2);
