@@ -15,4 +15,11 @@ describe('clamp function', () => {
     expect(clamp(7, 5, 10)).toBe(7);
     expect(clamp(100, 5, 6)).toBe(6);
   });
+
+  it('accepts the bounds in reverse order', () => {
+    expect(clamp(5, 10, 0)).toBe(5);
+    expect(clamp(-5, 10, 0)).toBe(0);
+    expect(clamp(15, 10, 0)).toBe(10);
+    expect(clamp(2, 15, 5)).toBe(5);
+  });
 });

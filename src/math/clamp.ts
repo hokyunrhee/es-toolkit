@@ -39,6 +39,7 @@ export function clamp(value: number, minimum: number, maximum: number): number;
  * @param value - The number to clamp.
  * @param bound1 - The minimum bound to clamp the number, or the maximum bound if bound2 is not provided.
  * @param [bound2] - The maximum bound to clamp the number. If not provided, the function will only consider bound1 as the upper limit.
+ * The two bounds may be given in either order: the smaller one is used as the minimum.
  * @returns The clamped number within the specified bounds.
  *
  * @example
@@ -46,11 +47,15 @@ export function clamp(value: number, minimum: number, maximum: number): number;
  * const result2 = clamp(10, 5, 15); // result2 will be 10, as it is within the bounds 5 and 15
  * const result3 = clamp(2, 5, 15); // result3 will be 5, as 2 is clamped to the lower bound 5
  * const result4 = clamp(20, 5, 15); // result4 will be 15, as 20 is clamped to the upper bound 15
+ * const result5 = clamp(2, 15, 5); // result5 will be 5, as the bounds are reordered to 5 and 15
  */
 export function clamp(value: number, bound1: number, bound2?: number): number {
   if (bound2 == null) {
     return Math.min(value, bound1);
   }
 
-  return Math.min(Math.max(value, bound1), bound2);
+  const lower = Math.min(bound1, bound2);
+  const upper = Math.max(bound1, bound2);
+
+  return Math.min(Math.max(value, lower), upper);
 }
