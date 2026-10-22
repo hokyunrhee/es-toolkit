@@ -31,7 +31,6 @@ export { isSubset } from './isSubset.ts';
 export { isSubsetWith } from './isSubsetWith.ts';
 export { keyBy } from './keyBy.ts';
 export { last } from './last.ts';
-export { limitAsync } from './limitAsync.ts';
 export { mapAsync } from './mapAsync.ts';
 export { maxBy } from './maxBy.ts';
 export { minBy } from './minBy.ts';
